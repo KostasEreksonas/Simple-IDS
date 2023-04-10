@@ -1,5 +1,8 @@
 #/usr/bin/python3
-
+"""
+A simple experiment with Intrusion Detection System Based on Geeksforgeeks article:
+https://www.geeksforgeeks.org/intrusion-detection-system-using-machine-learning-algorithms/
+"""
 import os
 import pandas as pd
 import numpy as np
@@ -19,7 +22,7 @@ with open("data/kddcup.names", 'r') as file:
 attack_types = {}
 with open("data/training_attack_types", 'r') as file:
     for row in file:
-        (key, val) = row.split()
+        (key, val) = row.rstrip("\n").split(' ')
         attack_types[key] = val
 
 print(attack_types)
