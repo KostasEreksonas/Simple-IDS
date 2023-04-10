@@ -14,4 +14,12 @@ with open("data/kddcup.names", 'r') as file:
     for row in file:
         cols.append(row.split()[0].rstrip(':'))
 
-print(cols)
+#print(cols)
+
+attack_types = {}
+with open("data/training_attack_types", 'r') as file:
+    for row in file:
+        (key, val) = row.split()
+        attack_types[key] = val
+
+print(attack_types)
