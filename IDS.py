@@ -10,19 +10,26 @@ import matplotlib as plt
 import seaborn as sns
 import time
 
-cols = []
-# Read features list
-with open("data/kddcup.names", 'r') as file:
-    next(file) # Start from the second row
-    for row in file:
-        cols.append(row.split()[0].rstrip(':'))
+def get_columns(filename):
+    """Get features list to columns array"""
+    cols = []
+    # Read features list
+    with open(filename, 'r') as file:
+        next(file) # Start from the second row
+        for row in file:
+            cols.append(row.split()[0].rstrip(':'))
+        cols.append("target")
+    print(cols)
 
-#print(cols)
+def get_attacks(filename):
+    """Create a dictionary of attack types"""
+    attack_types = {}
+    with open(filename, 'r') as file:
+        attack_types['normal'] = 'normal'
+        for row in file:
+            (key, val) = row.rstrip("\n").split(' ')
+            attack_types[key] = val
+    print(attack_types)
 
-attack_types = {}
-with open("data/training_attack_types", 'r') as file:
-    for row in file:
-        (key, val) = row.rstrip("\n").split(' ')
-        attack_types[key] = val
-
-print(attack_types)
+get_columns("data/kddcup.names")
+get_attacks("data/training_attack_types")
